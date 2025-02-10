@@ -1,13 +1,21 @@
 CC = clang
-CFLAGS = -lcs50 -Wall -Wextra -Werror -std=c11
+CFLAGS = -Wall -Wextra -Werror -std=c11 -L../lib -lcs50
 
-# Get the folder name (assumes you run make from the project root)
-DEFAULT_PROGRAM = $(notdir $(shell pwd))
+# Traverse all subdirectories and build each .c file in those directories
+SUBDIRS := $(wildcard */)
 
-all: $(DEFAULT_PROGRAM)
+# Default target (when you just run 'make')
+all: $(SUBDIRS)
 
-$(DEFAULT_PROGRAM): $(DEFAULT_PROGRAM).c
-	$(CC) -o $(DEFAULT_PROGRAM) $(DEFAULT_PROGRAM).c $(CFLAGS)
+# Build each program for every subdirectory (weekX)
+$(SUBDIRS): %:
+	$(MAKE) -C $@
 
+# Individual rule for compiling each program in each weekly directory
+%/$(notdir %): %/$(notdir %).c
+	$(CC) -o $@ $^ $(CFLAGS)
+
+# Clean rule to remove compiled files from all subdirectories
 clean:
-	rm -f $(DEFAULT_PROGRAM)
+	$(foreach dir, $(SUBDIRS), $(MAKE) -C $(dir) clean;)
+	rm -f $(SUBDIRS)
