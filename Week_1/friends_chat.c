@@ -20,8 +20,7 @@ int main(void)
         // Confirm
         answer = confirm(name, age);
 
-    }
-    while (answer != 1);
+    } while (answer != 1);
     printf("Great! Nice to meet you, %s!\n", name);
 }
 

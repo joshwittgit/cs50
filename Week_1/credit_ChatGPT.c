@@ -50,7 +50,7 @@ bool luhn(long card)
 void check_card_type(long card)
 {
     int length = get_length(card);
-    int lead = (int) (card / pow(10, length - 2));
+    int lead = (int)(card / pow(10, length - 2));
 
     if ((length == 13 || length == 16) && (lead >= 40 && lead < 50)) // VISA
     {

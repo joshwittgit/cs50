@@ -10,15 +10,15 @@ bool luhn(long card, int dig);
 int main(void)
 {
     long card = get_long("What is you\'re credit card number? ");
-    bool digs13 = (9 < (card / ((long) pow(10, 11))) && (card / ((long) pow(10, 11))) < 100);
-    bool digs15 = (9 < (card / ((long) pow(10, 13))) && (card / ((long) pow(10, 13))) < 100);
-    bool digs16 = (9 < (card / ((long) pow(10, 14))) && (card / ((long) pow(10, 14))) < 100);
+    bool digs13 = (9 < (card / ((long)pow(10, 11))) && (card / ((long)pow(10, 11))) < 100);
+    bool digs15 = (9 < (card / ((long)pow(10, 13))) && (card / ((long)pow(10, 13))) < 100);
+    bool digs16 = (9 < (card / ((long)pow(10, 14))) && (card / ((long)pow(10, 14))) < 100);
     // printf("%i ,%i, %i \n", dig13, dig15, dig16);
 
     if (digs13 == 1) // VISA (40)
     {
         int dig13 = 13;
-        int lead13 = (int) (card / ((long) pow(10, 11)));
+        int lead13 = (int)(card / ((long)pow(10, 11)));
         thirt(card, lead13, dig13);
     }
     else if (digs15 == 1) // AMEX (34 or 37)
@@ -30,7 +30,7 @@ int main(void)
     else if (digs16 == 1) // VISA (40) OR MASTERCARD (51, 52, 53, 54, or 55)
     {
         int dig16 = 16;
-        int lead16 = (int) (card / ((long) pow(10, 14)));
+        int lead16 = (int)(card / ((long)pow(10, 14)));
         sixt(card, lead16, dig16);
     }
     else
@@ -122,16 +122,16 @@ bool luhn(long card, int dig)
     {
         if (i % 2 == 0)
         {
-            long num = card % (long) pow(10, i + 1);
-            long den = (long) pow(10, i);
-            int digit = (int) (num / den);
-            sum = sum + (int) (num / den);
+            long num = card % (long)pow(10, i + 1);
+            long den = (long)pow(10, i);
+            int digit = (int)(num / den);
+            sum = sum + (int)(num / den);
         }
         else
         {
-            long num = card % (long) pow(10, i + 1);
-            long den = (long) pow(10, i);
-            int digit = (int) (num / den);
+            long num = card % (long)pow(10, i + 1);
+            long den = (long)pow(10, i);
+            int digit = (int)(num / den);
             if (digit != 9)
             {
                 sum = sum + ((digit * 2) % 9);
@@ -140,7 +140,6 @@ bool luhn(long card, int dig)
             {
                 sum = sum + digit;
             }
-
         }
     }
     bool sectest = (sum % 10) == 0;

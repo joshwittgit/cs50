@@ -10,13 +10,12 @@ int main(void)
     do
     {
         rows = get_int("How many rows? ");
-    }
-    while (rows < 1); // prevent nonsense
+    } while (rows < 1); // prevent nonsense
 
     printf("\n");
     for (int n = 0; n < rows; n++)
     {
-        print_spaces(rows - (n + 1)); 
+        print_spaces(rows - (n + 1));
         print_bricks(n + 1);
         printf("  ");
         print_bricks(n + 1);
